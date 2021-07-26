@@ -34,15 +34,17 @@ public class FragmentA extends Fragment {
             public void onClick(View v) {
 
                 EditText editText_a = view.findViewById(R.id.editText_a);
-                String data = editText_a.getText().toString();
-                Bundle bundle = new Bundle();
-                bundle.putString(DATA, data);
-
+//                String data = editText_a.getText().toString();
+//                Bundle bundle = new Bundle();
+//                bundle.putString(DATA, data);
+//
                 FragmentB fragmentB = new FragmentB();
-                fragmentB.setArguments(bundle);
+//                fragmentB.setArguments(bundle);
 
                 FragmentTransaction fragmentTransaction1 = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction1.replace(R.id.frame_layout_fragmentContainer, fragmentB);
+                fragmentTransaction1.replace(R.id.frame_layout_fragmentContainer, FragmentB.newInstance(
+                        editText_a.getText().toString()
+                ));
                 fragmentTransaction1.addToBackStack(null);
                 fragmentTransaction1.commit();
 
