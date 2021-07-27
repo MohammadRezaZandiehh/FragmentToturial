@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -13,7 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-public class MyDialog extends DialogFragment {
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+
+public class MyDialog extends BottomSheetDialogFragment {
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -23,9 +26,11 @@ public class MyDialog extends DialogFragment {
 
     private MyDialogEventListener eventListener;
 
-    @NonNull
+
+    @Nullable
     @Override
-    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         View view = LayoutInflater.from(getContext()).inflate(R.layout.my_dialog, null, false);
         builder.setView(view);
@@ -52,7 +57,8 @@ public class MyDialog extends DialogFragment {
                 dismiss();
             }
         });
-        return builder.create();
+
+        return view;
     }
 
     public interface MyDialogEventListener {
